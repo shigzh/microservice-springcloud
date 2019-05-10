@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.sgz.springcloud</groupId>
+    <artifactId>microservice-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--子模块-->
+    <modules>
+        <module>microservice-product-8001</module>
+        <module>microservice-product-8002</module>
+        <module>microservice-consumer</module>
+        <module>microservice-consumer-feign</module>
+        <module>microservice-eureka-6001</module>
+        <module>microservice-eureka-6002</module>
+        <module>microservice-hystrix-dashboard-9001</module>
+        <module>microservice-zuul-gateway-7001</module>
+        <module>microservice-config-server-5001</module>
+        <module>microservice-config-client-5002</module>
+        <module>microservice-eureka-config-6001</module>
+        <module>microservice-product-config-8001</module>
+    </modules>
+    <!--手动指定 pom -->
+    <packaging>pom</packaging>
+
+    <!-- spring boot 采用 2.0.7 版本 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.7.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <!--项目使用mysql版本，默认是8.0.15 -->
+        <mysql.version>5.1.40</mysql.version>
+        <!--项目使用Tomcat版本 -->
+        <tomcat.version>8.5.38</tomcat.version>
+        <!-- spring cloud 采用 Finchley.SR2 版本 -->
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+    </properties>
+
+    <!--依赖声明-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <!--maven不支持多继承，使用import来 分类引入管理配置；就是为了让父类不那么乱，解决多继承问题-->
+                <!-- pom文件是单继承的，如果已经有一个父级了(这里已经有了spring-boot-starter-parent)，想要再引用外部的pom文件,采用在dependencyManagement中使用scope为import的方式可以分类引入更多的管理配置，也解决了单继承限制的问题 -->
+                <!-- 我们在继承了spring boot的版本依赖之后，要想再引入spring cloud的依赖，
+                这个时候没有办法再继承spring cloud了，此时必须使用scope的import方式在dependencyManagement中
+                引入spring cloud;scope为import只能在dependencyManagement中使用，且type为pom类型,dependencyManagement里配置并不会实际引入，
+                只是为了版本管理，实际引入需要直接在dependencies中添加-->
+                <scope>import</scope>
+            </dependency>
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.14</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+            <!-- 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.10</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

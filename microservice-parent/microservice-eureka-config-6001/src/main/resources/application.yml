@@ -1,0 +1,4 @@
+#可以去除，与bootstrap合并
+spring:
+  application:
+    name: microservice-eureka-config
