@@ -12,7 +12,7 @@ spring:
   datasource:
     username: test
     password: 2pB88mUiHI9Z$uZ0
-    url: jdbc:mysql://210.72.13.99:3306/sanfront
+    url: jdbc:mysql://127.0.0.1:3306/sanfront
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource #指定自定义的数据源类型,如果这里不指定,默认使用的是HikariDataSource
     initialSize: 8 #数据库连接池初始化连接大小
