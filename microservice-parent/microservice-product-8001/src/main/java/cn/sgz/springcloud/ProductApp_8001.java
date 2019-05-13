@@ -17,7 +17,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 //扫描mybatis的mapper接口文件
 @MapperScan(value="cn.sgz.springcloud.mapper")
 //向服务注册中心进行注册
-@EnableEurekaClient //本服务启动后会自动注册进Eureka中心
+@EnableEurekaClient //本服务启动后会自动注册进Eureka服务中心
 @SpringBootApplication
 public class ProductApp_8001 {
     public static void main(String[] args) {
