@@ -10,6 +10,11 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 存值的时候建议加上命名空间  这样结构比较清晰
+ * 比如：
+ *   set sgz:name zhangsan
+ *   set sgz:age 18
+ *
  * @Description: redis服务类
  * @Auther:shigzh
  * @create 2019/5/12 14:44
@@ -107,7 +112,7 @@ public class RedisService {
      * @param field
      * @param value
      */
-    public void hmSet(String key, Object field, Object value){
+    public void hSet(String key, Object field, Object value){
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         hash.put(key,field,value);
     }
@@ -118,13 +123,13 @@ public class RedisService {
      * @param field
      * @return
      */
-    public Object hmGet(String key, Object field){
+    public Object hGet(String key, Object field){
         HashOperations<String, Object, Object>  hash = redisTemplate.opsForHash();
         return hash.get(key,field);
     }
 
     /**
-     * 列表添加
+     * 列表添加(放入list列表头部，也可以理解为从list列表左边放入)
      * @param key
      * @param value
      */
@@ -134,7 +139,7 @@ public class RedisService {
     }
 
     /**
-     * 列表获取
+     * 列表获取（后面两个参数是列表的范围，从0开始）
      * @param key
      * @param startIndex 开始位置
      * @param endIndex 结束位置
@@ -150,7 +155,7 @@ public class RedisService {
      * @param key
      * @param value
      */
-    public void add(String key,Object value){
+    public void sAdd(String key,Object value){
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         set.add(key,value);
     }
@@ -160,7 +165,7 @@ public class RedisService {
      * @param key
      * @return
      */
-    public Set<Object> setMembers(String key){
+    public Set<Object> sMembers(String key){
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         return set.members(key);
     }

@@ -75,15 +75,15 @@ logging:
   file: D:/logs/shop.log
 
 #eureka配置
-#eureka:
-#  client:
-#    register-with-eureka: true # 服务注册开关
-#    fetch-registry: true # 服务发现开关
-#    service-url: # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
-#      #单机版
-#      defaultZone: http://127.0.0.1:6001/eureka
-#      # 集群版: 配置其他的Eureka Server服务端访问地址
-#      #defaultZone: http://eureka6001.com:6001/eureka/,http://eureka6002.com:6002/eureka/
-#  instance:
-#    instance-id: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
-#    prefer-ip-address: true #访问路径可以显示IP地址
+eureka:
+  client:
+    register-with-eureka: true # 服务注册开关
+    fetch-registry: true # 服务发现开关
+    service-url: # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
+      #单机版
+      defaultZone: http://127.0.0.1:6001/eureka
+      # 集群版: 配置其他的Eureka Server服务端访问地址
+      #defaultZone: http://eureka6001.com:6001/eureka/,http://eureka6002.com:6002/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
+    prefer-ip-address: true #访问路径可以显示IP地址
