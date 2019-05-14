@@ -1,4 +1,4 @@
-package cn.sgz.common.utils;
+package cn.sgz.shop.utils;
 
 import java.io.Serializable;
 

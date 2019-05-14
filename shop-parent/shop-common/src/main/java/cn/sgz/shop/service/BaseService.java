@@ -1,6 +1,6 @@
-package cn.sgz.common.api;
+package cn.sgz.shop.service;
 
-import cn.sgz.common.constants.ShopConstants;
+import cn.sgz.shop.constants.ShopConstants;
 
 import java.util.HashMap;
 import java.util.Map;

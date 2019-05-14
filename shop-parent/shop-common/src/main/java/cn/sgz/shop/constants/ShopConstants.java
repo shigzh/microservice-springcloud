@@ -1,4 +1,4 @@
-package cn.sgz.common.constants;
+package cn.sgz.shop.constants;
 
 /**
  * @Description:
