@@ -174,7 +174,7 @@ public class RedisService {
      * 有序集合添加
      * @param key
      * @param value
-     * @param score
+     * @param score 得分
      */
     public void zAdd(String key,Object value,double score){
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
@@ -182,7 +182,7 @@ public class RedisService {
     }
 
     /**
-     * 有序集合获取
+     * 有序集合获取（在一定得分范围之内的）
      * @param key
      * @param startScore
      * @param endScore
