@@ -15,6 +15,10 @@ import java.util.concurrent.TimeUnit;
  *   set sgz:name zhangsan
  *   set sgz:age 18
  *
+ * final修饰参数的作用
+ *    修饰的参数的值在方法体内是不能被修改的，即不能被重新赋值。否则编译就通不过
+ *    想用的话就用基本类型，还是很有作用的。引用类型，还是算了吧（final String[] ag   ag[0]="5";修改了不会报错）
+ *
  * @Description: redis服务类
  * @Auther:shigzh
  * @create 2019/5/12 14:44
@@ -29,7 +33,7 @@ public class RedisService {
      * @param value 存入redis的key对应的值
      * @return
      */
-    public boolean set(String key, Object value) {
+    public boolean set(final String key, Object value) {
         boolean result = false;
         try {
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
@@ -47,7 +51,7 @@ public class RedisService {
      * @param expireTime 存入redis对应的过期时间(单位：秒)
      * @return
      */
-    public boolean set(String key, Object value, Long expireTime) {
+    public boolean set(final String key, Object value, Long expireTime) {
         boolean result = false;
         try {
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
@@ -63,7 +67,7 @@ public class RedisService {
      * 批量删除对应的value
      * @param keys 要删除的对应的key
      */
-    public void remove(String... keys) {
+    public void remove(final String... keys) {
         for (String key : keys) {
             remove(key);
         }
@@ -73,7 +77,7 @@ public class RedisService {
      * 批量删除key
      * @param pattern 符合正则表达式类型
      */
-    public void removePattern(String pattern) {
+    public void removePattern(final String pattern) {
         Set<Serializable> keys = redisTemplate.keys(pattern);
         if (keys.size() > 0)
             redisTemplate.delete(keys);
@@ -82,7 +86,7 @@ public class RedisService {
      * 删除对应的value
      * @param key
      */
-    public void remove(String key) {
+    public void remove(final String key) {
         if (exists(key)) {
             redisTemplate.delete(key);
         }
@@ -92,7 +96,7 @@ public class RedisService {
      * @param key
      * @return
      */
-    public boolean exists(String key) {
+    public boolean exists(final String key) {
         return redisTemplate.hasKey(key);
     }
     /**
@@ -100,7 +104,7 @@ public class RedisService {
      * @param key
      * @return
      */
-    public Object get(String key) {
+    public Object get(final String key) {
         Object result = null;
         ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
         result = operations.get(key);
