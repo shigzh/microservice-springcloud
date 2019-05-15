@@ -33,6 +33,8 @@ public class ConfigBean {
     /**
      * 默认情况下会采用轮询策略，如果希望采用其它策略，则指定IRule实现
      *
+     * 我们也可以自己定义一个规则类继承extends AbstractLoadBalancerRule，然后在下面使用即可
+     *
      * 负载均衡有好几种实现策略，常见的有：
      * 1. 随机 (Random)
      * 2. 轮询 (RoundRobin)
