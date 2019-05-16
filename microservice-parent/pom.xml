@@ -47,6 +47,12 @@
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
     <!--依赖声明-->
     <dependencyManagement>
         <dependencies>
@@ -88,5 +94,27 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <!--配置下面的就可以读取src/main/resources下所有以$符号开头的配置属性 -->
+        <finalName>microservicecloud</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimit>$</delimit>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
