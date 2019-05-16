@@ -10,9 +10,9 @@ spring:
 
   #数据源配置
   datasource:
-    username: test
-    password: 2pB88mUiHI9Z$uZ0
-    url: jdbc:mysql://127.0.0.1:3306/sanfront
+    username: root
+    password: 12345678
+    url: jdbc:mysql://192.168.5.130:3306/springcloud
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource #指定自定义的数据源类型,如果这里不指定,默认使用的是HikariDataSource
     initialSize: 8 #数据库连接池初始化连接大小
@@ -72,4 +72,13 @@ management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+      #include: hystrix.stream
+        include: '*'
+
+#eureka服务界面点击服务访问信息 http://192.168.5.1:8001/actuator/info
+#如果要读取$$中间的属性就要在pom.xml里配置 <delimit>$</delimit> 这里在父pom.xml里配置的
+info:
+  app.name: sgz-microservicecloud
+  company.name: www.sgz.com
+  build.artifactId: $project.artifactId$ #这里$$中间属性没有起作用，暂时没有找到原因
+  build.version: $project.version$
