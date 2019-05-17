@@ -22,12 +22,15 @@ eureka:
     instance-id: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
     prefer-ip-address: true #访问路径可以显示IP地址
 zuul:
+  prefix: /sgz #访问的时候添加个前缀  localhost:7001/sgz/product/**
+  ignored-services: microservice-product #加了这个配置，就不能通过 访问，必须通过路由网关访问。这里只限制microservice-product这一个服务，如果有多个服务限制使用 "*"
+  #ignored-services: "*"  #必须通过 localhost:7001/product/**来访问，不能通过localhost:7001/microservice-product/get/1访问了（不加这个配置的时候可以访问）
   routes:
     provider-product: # 路由名称，名称任意，路由名称唯一
-      path: /product/** #访问路径
-      serviceId: microservice-product # 指定服务ID，会自动从Eureka中找到此服务的ip和端口
-      stripPrefix: false # 代理转发时是否去掉前缀，false:代理转发时不去掉前缀 例如:为true时 请求 /product/get/1，代理转发到/get/1
-    #provider-order:
-      #path: /order/**
-      #serviceId: microservice-order
-      #stripPrefix: false
+    path: /product/** #访问路径
+    serviceId: microservice-product # 指定服务ID，会自动从Eureka中找到此服务的ip和端口
+    stripPrefix: false # 代理转发时是否去掉前缀，false:代理转发时不去掉前缀 例如:为true时 请求 /product/get/1，代理转发到/get/1
+  #provider-order:
+  #path: /order/**
+  #serviceId: microservice-order
+  #stripPrefix: false
