@@ -5,7 +5,7 @@ spring:
       profile: prod # 本次访问的环境配置项
       label: master # 远程库的分支名
       uri: http://127.0.0.1:5001 #Config配置中心地址，本微服务启动的时候先去访问5001配置服务器，通过它获取microservice-config-product.yml配置信息
-  #应用名字
+  #应用名字(一般这个放在application.yml中，这里自己测试放在一起了，以后工作中还是分开放在aplicationl.yml中)
   application:
     name: microservice-product-config
 
